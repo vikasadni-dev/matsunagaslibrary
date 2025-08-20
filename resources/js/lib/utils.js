@@ -1,31 +1,29 @@
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge"
+import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs) {
-  return twMerge(clsx(inputs));
+    return twMerge(clsx(inputs));
 }
 
 export const FINEPAYMENTSTATUS = {
     PENDING: 'TERTUNDA',
     SUCCESS: 'SUKSES',
     FAILED: 'GAGAL',
-}
+};
 
-export function flashMessage(params){
+export function flashMessage(params) {
     return params.props.flash_message;
 }
 
 export const formatToRupiah = (amount) => {
-    const formatter = new Intl.NumberFormat('id-ID',
-        {
-            style: 'currency',
-            currency: 'IDR',
-            minimunFractionDigits: 0,
-            maximumFractionDigits: 0,
-        }
-    );
+    const formatter = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimunFractionDigits: 0,
+        maximumFractionDigits: 0,
+    });
     return formatter.format(amount);
-}
+};
 
 export const messages = {
     503: {
@@ -58,4 +56,4 @@ export const messages = {
         description: 'Please try again in just a second',
         status: '429',
     },
-}
+};
