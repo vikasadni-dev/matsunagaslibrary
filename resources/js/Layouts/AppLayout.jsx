@@ -1,4 +1,5 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import NavLink from '@/Components/NavLink';
 import { Avatar, AvatarFallback } from '@/Components/ui/avatar';
 import { Button } from '@/Components/ui/button';
 import {
@@ -10,7 +11,8 @@ import {
     DropdownMenuTrigger,
 } from '@/Components/ui/dropdown-menu';
 import { Toaster } from '@/Components/ui/toaster';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
+import { IconAlertCircle, IconBooks, IconBuildingCommunity, IconCategory, IconChartDonut2, IconCircleKey, IconCreditCard, IconCreditCardRefund, IconDashboard, IconDashboardFilled, IconKeyframe, IconLayoutKanban, IconLogout, IconMoneybag, IconRoute, IconSettingsExclamation, IconStack3, IconUser, IconUsersGroup, IconVersions } from '@tabler/icons-react';
 export default function AppLayout({ title, children }) {
     return (
         <div>
@@ -26,14 +28,51 @@ export default function AppLayout({ title, children }) {
 
                             <ApplicationLogo />
                         </div>
-                        <div className="flex-1">{/* sidebar */}</div>
+                        <div className="flex-1">
+                            {/* sidebar */}
+                            <nav className='grid items-start px-2 text-sm font-semibold lg:px-4'>
+                                <div className='px-3 py-2 text-sm font-semibold text-foreground'>Dashboard</div>
+                                <NavLink url="#" title="Dashboard" icon={IconDashboard} />
+
+                                <div className='px-3 py-2 text-sm font-semibold text-foreground'>Statistik</div>
+                                <NavLink url="#" title="Statistik Peminjaman" icon={IconChartDonut2} />
+                                <NavLink url="#" title="Laporan Denda" icon={IconMoneybag} />
+                                <NavLink url="#" title="Laporan Stok Buku" icon={IconStack3} />
+
+                                <div className='px-3 py-2 text-sm font-semibold text-foreground'>Master</div>
+                                <NavLink url="#" title="Kategori" icon={IconCategory} />
+                                <NavLink url="#" title="Penerbit" icon={IconBuildingCommunity} />
+                                <NavLink url="#" title="Buku" icon={IconBooks} />
+                                <NavLink url="#" title="Pengguna" icon={IconUsersGroup} />
+                                <NavLink url="#" title="Pengaturan Denda" icon={IconSettingsExclamation} />
+
+                                <div className='px-3 py-2 text-sm font-semibold text-foreground'>Peran dan Izin</div>
+                                <NavLink url="#" title="Peran" icon={IconCircleKey} />
+                                <NavLink url="#" title="Izin" icon={IconVersions} />
+                                <NavLink url="#" title="Tetapkan Izin" icon={IconKeyframe} />
+                                <NavLink url="#" title="Tetapkan Peran" icon={IconLayoutKanban} />
+                                <NavLink url="#" title="Akses Rute" icon={IconRoute} />
+
+                                <div className='px-3 py-2 text-sm font-semibold text-foreground'>Transaksi</div>
+                                <NavLink url="#" title="Peminjaman" icon={IconCreditCard} />
+                                <NavLink url="#" title="Pengembalian" icon={IconCreditCardRefund} />
+
+                                <div className='px-3 py-2 text-sm font-semibold text-foreground'>Lainnya</div>
+                                <NavLink url="#" title="Pengumuman" icon={IconAlertCircle} />
+                                {/*bawaan breezee*/}
+                                <NavLink url="{route('profile.edit')}" title="Profil" icon={IconUser} />
+                                <NavLink url="#" title="Logout" icon={IconLogout} />
+
+                            </nav>
+                        </div>
                     </div>
                 </div>
                 <div className="flex w-full flex-col lg:w-4/5">
 
                     <header className="flex h-12 items-center justify-between gap-4 border-b px-4 lg:h-[60px] lg:justify-end lg:px-6">
 
-                        {/* sidebar responsive */} {/* dropdown */}
+                        {/* sidebar responsive */}
+                        {/* dropdown */}
                         <DropdownMenu>
 
                             <DropdownMenuTrigger asChild>
@@ -51,7 +90,11 @@ export default function AppLayout({ title, children }) {
 
                                 <DropdownMenuLabel>Akun Saya</DropdownMenuLabel> <DropdownMenuSeparator />
                                 <DropdownMenuItem>Profile</DropdownMenuItem>
-                                <DropdownMenuItem>Logout</DropdownMenuItem>
+                                <DropdownMenuItem asChild>
+                                    <Link href="#">
+                                    Logout
+                                    </Link>
+                                </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </header>
