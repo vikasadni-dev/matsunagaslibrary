@@ -13,7 +13,7 @@ export const FINEPAYMENTSTATUS = {
 
 export function flashMessage(params) {
     return params.props.flash_message;
-}
+};
 
 export const formatToRupiah = (amount) => {
     const formatter = new Intl.NumberFormat('id-ID', {

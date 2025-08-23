@@ -5,7 +5,10 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: 'resources/js/app.jsx',
+            input: [
+                'resources/js/app.jsx',
+                'resources/css/app.css', // kalau ada CSS utama
+            ],
             ssr: 'resources/js/ssr.jsx',
             refresh: true,
         }),
