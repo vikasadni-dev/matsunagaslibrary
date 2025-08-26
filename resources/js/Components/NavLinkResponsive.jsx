@@ -1,6 +1,9 @@
+import { cn } from '@/lib/utils';
+import { Link } from '@inertiajs/react';
+
 export default function NavLinkResponsive({ active = false, url = '#', title, icon: Icon, ...props }) {
     return (
-        <link
+        <Link
             {...props}
             href={url}
             className={cn(
@@ -12,6 +15,6 @@ export default function NavLinkResponsive({ active = false, url = '#', title, ic
         >
             <Icon className="h-4 w-4" />
             {title}
-        </link>
+        </Link>
     );
 }

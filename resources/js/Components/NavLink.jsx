@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react';
 import { cn } from '@/lib/utils';
+import { Link } from '@inertiajs/react';
 
 export default function NavLink({ active = false, url = '#', title, icon: Icon, ...props }) {
     return (
@@ -8,9 +8,9 @@ export default function NavLink({ active = false, url = '#', title, icon: Icon, 
             href={url}
             className={cn(
                 active
-                    ? 'via-orange-600 bg-gradient-to-r from-orange-400 to-orange-500 font-semibold text-white hover:text-white'
-                    : 'text-muted-foreground hover:text-orange-500',
-                'flex items-center gap-3 rounded-lg font-medium transition-all p-3',
+                    ? 'bg-gradient-to-r from-orange-400 via-orange-600 to-orange-500 font-semibold text-white hover:text-white'
+                    : 'text-muted-foreground hover:text-orange-500', {/* ini jika NavLink tidak aktif */},
+                'flex items-center gap-3 rounded-lg p-3 font-medium transition-all',
             )}
         >
             <Icon className="h-4 w-4" />
@@ -18,4 +18,3 @@ export default function NavLink({ active = false, url = '#', title, icon: Icon, 
         </Link>
     );
 }
-
