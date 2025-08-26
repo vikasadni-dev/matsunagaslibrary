@@ -19,7 +19,7 @@ import SidebarResponsive from './Partials/SidebarResponsive';
 
 export default function AppLayout({ title, children }) {
     const auth = usePage().props.auth.user;
-    const {url} = usePage();
+    const { url } = usePage();
     return (
         <div>
             <Head title={title} /> <Toaster position="top-center" richColors />
@@ -63,8 +63,8 @@ export default function AppLayout({ title, children }) {
                                 <Button variant="ghost" className="flex gap-x-2">
                                     <span>Hi, {auth.name}</span>
                                     <Avatar>
-                                        <AvatarImage src={auth.avatar}/>
-                                        <AvatarFallback>{auth.name.substring(0,1)}</AvatarFallback>
+                                        <AvatarImage src={auth.avatar} />
+                                        <AvatarFallback>{auth.name.substring(0, 1)}</AvatarFallback>
                                     </Avatar>
                                 </Button>
                             </DropdownMenuTrigger>
