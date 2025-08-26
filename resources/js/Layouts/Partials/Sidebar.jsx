@@ -53,8 +53,8 @@ export default function Sidebar({url, auth}) {
             <div className="px-3 py-2 text-sm font-semibold text-foreground">Lainnya</div>
             <NavLink url="#" title="Pengumuman" icon={IconAlertCircle} />
             {/*bawaan breezee*/}
-            <NavLink url="{route('profile.edit')}" title="Profil" icon={IconUser} />
-            <NavLink url="#" title="Logout" icon={IconLogout} />
+            <NavLink url={route('profile.edit')} title="Profil" icon={IconUser} />
+            <NavLink url={route('logout')} title="Logout" icon={IconLogout} method='post' as='button' className='w-full' />
         </nav>
     );
 }
