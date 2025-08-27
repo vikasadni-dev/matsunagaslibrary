@@ -1,6 +1,5 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import InputError from '@/Components/InputError';
-import { Alert, AlertDescription } from '@/Components/ui/alert';
 import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
@@ -107,19 +106,11 @@ export default function Register() {
                                     value={data.password_confirmation}
                                     onChange={(e) => setData(e.target.name, e.target.value)}
                                 />
-                                {errors.password_confirmation && (
-                                    <InputError message={errors.password_confirmation} />
-                                )}
+                                {errors.password_confirmation && <InputError message={errors.password_confirmation} />}
                             </div>
 
                             {/* Tombol Register */}
-                            <Button
-                                type="submit"
-                                variant="orange"
-                                size="xl"
-                                className="w-full"
-                                disabled={processing}
-                            >
+                            <Button type="submit" variant="orange" size="xl" className="w-full" disabled={processing}>
                                 Daftar
                             </Button>
                         </div>

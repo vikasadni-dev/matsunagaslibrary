@@ -128,3 +128,6 @@ export default function Login({ status, canResetPassword }) {
 }
 
 Login.layout = (page) => <GuestLayout children={page} title="login" />;
+{
+    /*untuk menamai tab*/
+}
