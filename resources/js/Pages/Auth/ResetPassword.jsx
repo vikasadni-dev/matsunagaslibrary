@@ -1,6 +1,4 @@
 import InputError from '@/Components/InputError';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
 import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
@@ -50,8 +48,7 @@ export default function ResetPassword({ token, email }) {
                                         autoComplete="username"
                                         onChange={(e) => setData('email', e.target.value)}
                                     />
-                                    {errors.email &&
-                                        <InputError message={errors.email} />}
+                                    {errors.email && <InputError message={errors.email} />}
                                 </div>
 
                                 <div className="mt-4">
@@ -66,9 +63,7 @@ export default function ResetPassword({ token, email }) {
                                         isFocused={true}
                                         onChange={(e) => setData('password', e.target.value)}
                                     />
-                                    {errors.password &&(
-                                        <InputError message={errors.password} />
-                                    )}
+                                    {errors.password && <InputError message={errors.password} />}
                                 </div>
 
                                 <div className="mt-4">
@@ -86,11 +81,11 @@ export default function ResetPassword({ token, email }) {
                                     )}
                                 </div>
                                 <Button
-                                type="submit"
-                                variant="orange"
-                                size="xl"
-                                className="w-full"
-                                disabled={processing}
+                                    type="submit"
+                                    variant="orange"
+                                    size="xl"
+                                    className="w-full"
+                                    disabled={processing}
                                 >
                                     Reset Password
                                 </Button>
