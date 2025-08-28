@@ -5,7 +5,7 @@ import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
 import GuestLayout from '@/Layouts/GuestLayout';
-import { Link, useForm } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -55,11 +55,12 @@ export default function ForgotPassword({ status }) {
                                     {errors.email && <InputError message={errors.email} />}
                                 </div>
                                 <Button
-                                type="submit"
-                                variant="orange"
-                                size="xl"
-                                className="w-full"
-                                disable={processing}>
+                                    type="submit"
+                                    variant="orange"
+                                    size="xl"
+                                    className="w-full"
+                                    disable={processing}
+                                >
                                     Email Password Reset Link
                                 </Button>
                             </div>
