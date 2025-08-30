@@ -12,7 +12,8 @@ import {
 } from '@/Components/ui/alert-dialog';
 import { Avatar, AvatarFallback, AvatarImage } from '@/Components/ui/avatar';
 import { Button } from '@/Components/ui/button';
-import { Card, CardContent } from '@/Components/ui/card';
+import { Card, CardContent, CardFooter } from '@/Components/ui/card';
+import { Pagination, PaginationLink } from '@/Components/ui/pagination';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/Components/ui/table';
 import AppLayout from '@/Layouts/AppLayout';
 import { flashMessage } from '@/lib/utils';
@@ -21,6 +22,8 @@ import { IconCategory, IconPencil, IconPlus, IconTrash } from '@tabler/icons-rea
 import { toast } from 'sonner';
 
 export default function Index(props) {
+    const { categories } = props;
+    const { data, meta } = categories;
     return (
         <div className="flex w-full flex-col pb-32">
             <div className="mb-8 flex flex-col items-start justify-between gap-y-4 lg:flex-row lg:items-center">
@@ -50,9 +53,9 @@ export default function Index(props) {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {props.categories.map((category, index) => (
+                            {categories.data?.map((category, index) => (
                                 <TableRow key={index}>
-                                    <TableCell>{index + 1}</TableCell>
+                                    <TableCell>{index + 1 + ((meta?.current_page ?? 1) - 1) * (meta?.per_page ?? 10)}</TableCell>
                                     <TableCell>{category.name}</TableCell>
                                     <TableCell>{category.slug}</TableCell>
                                     <TableCell>
@@ -72,7 +75,7 @@ export default function Index(props) {
                                             <AlertDialog>
                                                 <AlertDialogTrigger asChild>
                                                     <Button variant="red" size="sm">
-                                                        <IconTrash size="4" />
+                                                        <IconTrash className="size-4" />
                                                     </Button>
                                                 </AlertDialogTrigger>
                                                 <AlertDialogContent>
@@ -91,14 +94,15 @@ export default function Index(props) {
                                                         <AlertDialogAction
                                                             onClick={() =>
                                                                 router.delete(
-                                                                    route('admin.categories.destroy', [category]), {
+                                                                    route('admin.categories.destroy', category.id),
+                                                                    {
                                                                         preserveScroll: true,
                                                                         preserveState: true,
                                                                         onSuccess: (success) => {
                                                                             const flash = flashMessage(success);
-                                                                            if(flash) toast[flash.type](flash.message);
-                                                                        }
-                                                                    }
+                                                                            if (flash) toast[flash.type](flash.message);
+                                                                        },
+                                                                    },
                                                                 )
                                                             }
                                                         >
@@ -114,6 +118,27 @@ export default function Index(props) {
                         </TableBody>
                     </Table>
                 </CardContent>
+                <CardFooter className="flex w-full flex-col items-center justify-between border-t py-2 lg:flex-row">
+                    <p className="mb-2 text-sm text-muted-foreground">
+                        Menampilkan {categories.meta?.from} sampai {categories.meta?.to} dari {categories.meta?.total}{' '}
+                        kategori
+                    </p>
+                    <div className="overflow-x-auto">
+                        {categories.meta && categories.meta.links && (
+                            <Pagination>
+                                {categories.meta.links.map((link, index) => (
+                                    <PaginationLink
+                                        key={index}
+                                        href={link.url ?? '#'}
+                                        className="lb:mb-0 mx-1 mb-1"
+                                        isActive={link.active}
+                                        dangerouslySetInnerHTML={{ __html: link.label }} // biar simbol « » tampil
+                                    />
+                                ))}
+                            </Pagination>
+                        )}
+                    </div>
+                </CardFooter>
             </Card>
         </div>
     );
